@@ -1,6 +1,7 @@
 import random
+import secrets
 import string
-password = []
+password = ""
 
 def main():
     global password
@@ -26,24 +27,18 @@ def main():
             passType = 4
     match passType:
         case 1:
-            for i in range(charAmount):
-                password.append(random.choice(string.ascii_lowercase))
+            password = "".join(secrets.choice(string.ascii_lowercase) for _ in range(charAmount))
         case 2:
-            for i in range(charAmount):
-                password.append(random.choice(string.ascii_letters))
+            password = "".join(secrets.choice(string.ascii_letters) for _ in range(charAmount))
         case 3:
-            for i in range(charAmount):
-                password.append(random.choice(string.ascii_letters + string.digits))
+            password = "".join(secrets.choice(string.ascii_letters + string.digits) for _ in range(charAmount))
         case 4:
-            for i in range(charAmount):
-                password.append(random.choice(string.hexdigits + string.punctuation))
+            password = "".join(secrets.choice(string.hexdigits + string.punctuation) for _ in range(charAmount))
         case None:
             print("Password type empty. Choosing default...")
-            for i in range(charAmount):
-                password.append(random.choice(string.hexdigits + string.punctuation))
+            password = "".join(secrets.choice(string.hexdigits + string.punctuation) for _ in range(charAmount))
         case _:
-            print("Invalid choice. Choosing default...")
-            for i in range(charAmount):
-                password.append(random.choice(string.hexdigits + string.punctuation))    
-    print("".join(password))
+            print("Invalid choice. Choosing default...")  
+            password = "".join(secrets.choice(string.hexdigits + string.punctuation) for _ in range(charAmount))
+    print(password)
 main()
